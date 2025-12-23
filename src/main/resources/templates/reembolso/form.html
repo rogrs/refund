@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="pt-br"
+      xmlns:th="http://www.thymeleaf.org"
+      th:replace="layout/base :: layout(~{::section})">
+
+<section>
+
+    <div class="card shadow-sm">
+        <div class="card-header bg-primary text-white">
+            Cadastro de Reembolso
+        </div>
+
+        <div class="card-body">
+
+            <form th:action="@{/reembolsos}"
+                  th:object="${reembolso}"
+                  method="post"
+                  enctype="multipart/form-data">
+
+                <!-- Mensagens globais -->
+                <div th:replace="fragments/messages :: messages"></div>
+
+                <input type="hidden" th:field="*{id}"/>
+
+                <!-- Paciente -->
+                <div class="mb-3">
+                    <label class="form-label">Paciente</label>
+                    <select class="form-select"
+                            th:field="*{paciente}"
+                            th:classappend="${#fields.hasErrors('paciente')} ? 'is-invalid'">
+                        <option value="">Selecione</option>
+                        <option th:each="p : ${pacientes}"
+                                th:value="${p}"
+                                th:text="${p}">
+                        </option>
+                    </select>
+                </div>
+
+                <!-- Tipo Terapia -->
+                <div class="mb-3">
+                    <label class="form-label">Tipo de Terapia</label>
+                    <select class="form-select"
+                            th:field="*{tipoTerapia}"
+                            th:classappend="${#fields.hasErrors('tipoTerapia')} ? 'is-invalid'">
+                        <option value="">Selecione</option>
+                        <option th:each="t : ${tipos}"
+                                th:value="${t}"
+                                th:text="${t}">
+                        </option>
+                    </select>
+                </div>
+
+                <!-- Número SR -->
+                <div class="mb-3">
+                    <label class="form-label">Número SR</label>
+                    <input type="text"
+                           class="form-control"
+                           th:field="*{numeroSr}"
+                           th:classappend="${#fields.hasErrors('numeroSr')} ? 'is-invalid'">
+                </div>
+
+                <!-- Nota Fiscal (número) -->
+                <div class="mb-3">
+                    <label class="form-label">Nota Fiscal</label>
+                    <input type="text"
+                           class="form-control"
+                           th:field="*{notaFiscal}"
+                           th:classappend="${#fields.hasErrors('notaFiscal')} ? 'is-invalid'">
+                </div>
+
+                <!-- Valor Nota Fiscal -->
+                <div class="mb-3">
+                    <label class="form-label">Valor Nota Fiscal</label>
+                    <input type="number"
+                           step="0.01"
+                           class="form-control"
+                           th:field="*{valorNotaFiscal}"
+                           th:classappend="${#fields.hasErrors('valorNotaFiscal')} ? 'is-invalid'">
+                </div>
+
+                <!-- Valor Reembolso -->
+                <div class="mb-3">
+                    <label class="form-label">Valor Reembolso</label>
+                    <input type="number"
+                           step="0.01"
+                           class="form-control"
+                           th:field="*{valorReembolso}">
+                </div>
+
+                <!-- Data Pedido -->
+                <div class="mb-3">
+                    <label class="form-label">Data do Pedido</label>
+                    <input type="date"
+                           class="form-control"
+                           th:field="*{dataPedido}"
+                           th:classappend="${#fields.hasErrors('dataPedido')} ? 'is-invalid'">
+                </div>
+
+                <!-- SR Cancelado -->
+                <div class="mb-3">
+                    <label class="form-label">SR Cancelado</label>
+                    <select class="form-select" th:field="*{srCancelado}">
+                        <option th:value="false">Não</option>
+                        <option th:value="true">Sim</option>
+                    </select>
+                </div>
+
+                <!-- Protocolo -->
+                <div class="mb-3">
+                    <label class="form-label">Protocolo</label>
+                    <input type="text"
+                           class="form-control"
+                           th:field="*{protocolo}">
+                </div>
+
+
+
+                <div class="d-flex justify-content-between">
+                    <a class="btn btn-secondary"
+                       th:href="@{/reembolsos}">
+                        Voltar
+                    </a>
+
+                    <button class="btn btn-success">
+                        Salvar
+                    </button>
+                </div>
+
+            </form>
+
+        </div>
+    </div>
+
+</section>
+</html>

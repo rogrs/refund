@@ -1,0 +1,62 @@
+<html xmlns:th="http://www.thymeleaf.org"
+      th:replace="layout/base :: layout(~{::section})">
+
+<section>
+
+    <h4>Novo Reembolso</h4>
+
+    <ul class="nav nav-tabs">
+        <li class="nav-item">
+            <button class="nav-link"
+                    th:classappend="${abaAtiva == 'passo1'} ? 'active'"
+                    data-bs-toggle="tab"
+                    data-bs-target="#passo1">
+                Passo 1
+            </button>
+        </li>
+
+        <li class="nav-item">
+            <button class="nav-link"
+                    th:classappend="${abaAtiva == 'passo2'} ? 'active'"
+                    th:disabled="${reembolso.id == null}"
+                    data-bs-toggle="tab"
+                    data-bs-target="#passo2">
+                Passo 2
+            </button>
+        </li>
+
+        <li class="nav-item">
+            <button class="nav-link"
+                    th:classappend="${abaAtiva == 'passo3'} ? 'active'"
+                    th:disabled="${reembolso.id == null}"
+                    data-bs-toggle="tab"
+                    data-bs-target="#passo3">
+                Passo 3
+            </button>
+        </li>
+    </ul>
+
+    <div class="tab-content p-3 border border-top-0">
+
+        <div class="tab-pane fade"
+             th:classappend="${abaAtiva == 'passo1'} ? 'show active'"
+             id="passo1">
+            <!-- formulário passo 1 -->
+        </div>
+
+        <div class="tab-pane fade"
+             th:classappend="${abaAtiva == 'passo2'} ? 'show active'"
+             id="passo2">
+            <!-- upload NF -->
+        </div>
+
+        <div class="tab-pane fade"
+             th:classappend="${abaAtiva == 'passo3'} ? 'show active'"
+             id="passo3">
+            <!-- SR + comprovante -->
+        </div>
+
+    </div>
+
+</section>
+</html>

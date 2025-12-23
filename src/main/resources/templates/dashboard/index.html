@@ -1,0 +1,51 @@
+<html xmlns:th="http://www.thymeleaf.org"
+      th:replace="layout/base :: layout(~{::section})">
+
+<section>
+
+    <h3>Dashboard Financeiro</h3>
+
+    <form class="row g-2 mb-4">
+        <div class="col-md-3">
+            <input type="number" name="mes" class="form-control"
+                   placeholder="Mês" min="1" max="12">
+        </div>
+        <div class="col-md-3">
+            <input type="number" name="ano" class="form-control"
+                   placeholder="Ano">
+        </div>
+        <div class="col-md-3">
+            <button class="btn btn-primary">Filtrar</button>
+        </div>
+    </form>
+
+    <div class="row mb-4">
+        <div class="col-md-6">
+            <canvas id="graficoReembolsos"></canvas>
+        </div>
+    </div>
+
+    <script th:inline="javascript">
+        const labels = [[${labels}]];
+        const values = [[${values}]];
+
+        new Chart(document.getElementById('graficoReembolsos'), {
+            type: 'bar',
+            data: {
+                labels: labels,
+                datasets: [{
+                    label: 'Total Reembolsado',
+                    data: values,
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: { display: false }
+                }
+            }
+        });
+    </script>
+
+</section>
+</html>

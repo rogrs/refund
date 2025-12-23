@@ -1,0 +1,12 @@
+<div th:fragment="messages">
+
+    <div th:if="${#fields.hasErrors('*')}"
+         class="alert alert-danger">
+        <ul class="mb-0">
+            <li th:each="err : ${#fields.errors('*')}"
+                th:text="${err}">
+            </li>
+        </ul>
+    </div>
+
+</div>
