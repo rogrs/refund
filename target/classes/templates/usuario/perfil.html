@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="pt-br"
+      xmlns:th="http://www.thymeleaf.org"
+      th:replace="layout/base :: layout(~{::section})">
+
+<section class="row justify-content-center">
+
+    <div class="col-md-6">
+
+        <h3 class="mb-3 text-center">Meu Perfil</h3>
+
+        <div class="card shadow-sm">
+            <div class="card-body">
+
+                <p><strong>E-mail:</strong> <span th:text="${usuario.email}"></span></p>
+                <p><strong>Usuário:</strong> <span th:text="${usuario.username}"></span></p>
+                <p><strong>Idioma:</strong> <span th:text="${usuario.langKey}"></span></p>
+
+                <div class="d-grid gap-2 mt-3">
+                    <a class="btn btn-primary"
+                       th:href="@{/usuarios/editar}">
+                        Editar Perfil
+                    </a>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+</section>
+</html>

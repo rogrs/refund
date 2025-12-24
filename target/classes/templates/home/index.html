@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      th:replace="layout/base :: layout(~{::section})">
+
+<section class="text-center">
+
+    <h2 class="mb-3">Sistema de Reembolsos</h2>
+    <p class="text-muted mb-4">
+        Controle financeiro de reembolsos de terapias
+    </p>
+
+    <div class="d-flex justify-content-center gap-3">
+        <a class="btn btn-primary" th:href="@{/login}">
+            Login
+        </a>
+
+        <a class="btn btn-outline-secondary" th:href="@{/usuarios/novo}">
+            Criar Usuário
+        </a>
+    </div>
+
+</section>
+</html>
