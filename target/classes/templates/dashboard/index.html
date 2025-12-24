@@ -1,31 +1,89 @@
-<html xmlns:th="http://www.thymeleaf.org"
+<!DOCTYPE html>
+<html lang="pt-br"
+      xmlns:th="http://www.thymeleaf.org"
       th:replace="layout/base :: layout(~{::section})">
 
 <section>
 
-    <h3>Dashboard Financeiro</h3>
+    <!-- Título -->
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h3 class="mb-0">Dashboard Financeiro</h3>
+    </div>
 
-    <form class="row g-2 mb-4">
-        <div class="col-md-3">
-            <input type="number" name="mes" class="form-control"
-                   placeholder="Mês" min="1" max="12">
+    <!-- Menu rápido -->
+    <div class="row g-3 mb-4">
+
+        <div class="col-md-4">
+            <a class="card text-decoration-none shadow-sm h-100"
+               th:href="@{/reembolsos}">
+                <div class="card-body">
+                    <h5 class="card-title">📄 Reembolsos</h5>
+                    <p class="text-muted mb-0">
+                        Gerenciar solicitações de reembolso
+                    </p>
+                </div>
+            </a>
         </div>
-        <div class="col-md-3">
-            <input type="number" name="ano" class="form-control"
-                   placeholder="Ano">
+
+        <div class="col-md-4">
+            <a class="card text-decoration-none shadow-sm h-100"
+               th:href="@{/usuarios/perfil}">
+                <div class="card-body">
+                    <h5 class="card-title">👤 Meu Perfil</h5>
+                    <p class="text-muted mb-0">
+                        Ver e editar meus dados
+                    </p>
+                </div>
+            </a>
         </div>
+
+    </div>
+
+    <!-- Filtro -->
+    <form class="row g-2 mb-4"
+          method="get"
+          th:action="@{/dashboard}">
+
         <div class="col-md-3">
-            <button class="btn btn-primary">Filtrar</button>
+            <input type="number"
+                   name="mes"
+                   class="form-control"
+                   placeholder="Mês"
+                   min="1"
+                   max="12"
+                   th:value="${mes}">
         </div>
+
+        <div class="col-md-3">
+            <input type="number"
+                   name="ano"
+                   class="form-control"
+                   placeholder="Ano"
+                   th:value="${ano}">
+        </div>
+
+        <div class="col-md-3">
+            <button class="btn btn-primary">
+                Filtrar
+            </button>
+        </div>
+
     </form>
 
-    <div class="row mb-4">
-        <div class="col-md-6">
-            <canvas id="graficoReembolsos"></canvas>
+    <!-- Gráfico -->
+    <div class="row">
+        <div class="col-md-8">
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    <canvas id="graficoReembolsos"></canvas>
+                </div>
+            </div>
         </div>
     </div>
 
+    <!-- Chart.js -->
     <script th:inline="javascript">
+        /*<![CDATA[*/
         const labels = [[${labels}]];
         const values = [[${values}]];
 
@@ -45,6 +103,7 @@
                 }
             }
         });
+        /*]]>*/
     </script>
 
 </section>
