@@ -3,62 +3,82 @@
       xmlns:th="http://www.thymeleaf.org"
       th:replace="layout/base :: layout(~{::section})">
 
-<section class="row justify-content-center">
+<section class="min-vh-100 d-flex align-items-center">
 
-    <div class="col-md-4">
+    <div class="container">
 
-        <h3 class="mb-3 text-center">Login</h3>
+        <div class="row justify-content-center">
+            <div class="col-12 col-sm-8 col-md-6 col-lg-4">
 
-        <form th:action="@{/login}" method="post">
+                <div class="card shadow-sm">
 
-            <!-- CSRF TOKEN (obrigatório com CSRF ativo) -->
-            <input type="hidden"
-                   th:name="${_csrf.parameterName}"
-                   th:value="${_csrf.token}">
+                    <div class="card-body p-4">
 
-            <!-- Email / Username -->
-            <div class="mb-3">
-                <label for="username" class="form-label">E-mail</label>
-                <input type="email"
-                       id="username"
-                       name="username"
-                       class="form-control"
-                       placeholder="seu@email.com"
-                       autocomplete="username"
-                       required>
+                        <h3 class="mb-4 text-center">Login</h3>
+
+                        <form th:action="@{/login}" method="post">
+
+                            <!-- CSRF TOKEN -->
+                            <input type="hidden"
+                                   th:name="${_csrf.parameterName}"
+                                   th:value="${_csrf.token}">
+
+                            <!-- Email -->
+                            <div class="mb-3">
+                                <label for="username" class="form-label">
+                                    E-mail
+                                </label>
+                                <input type="email"
+                                       id="username"
+                                       name="username"
+                                       class="form-control form-control-lg"
+                                       placeholder="seu@email.com"
+                                       autocomplete="username"
+                                       required>
+                            </div>
+
+                            <!-- Senha -->
+                            <div class="mb-3">
+                                <label for="password" class="form-label">
+                                    Senha
+                                </label>
+                                <input type="password"
+                                       id="password"
+                                       name="password"
+                                       class="form-control form-control-lg"
+                                       autocomplete="current-password"
+                                       required>
+                            </div>
+
+                            <!-- Mensagens -->
+                            <div th:if="${param.error}"
+                                 class="alert alert-danger text-center">
+                                Usuário ou senha inválidos
+                            </div>
+
+                            <div th:if="${param.logout}"
+                                 class="alert alert-success text-center">
+                                Logout realizado com sucesso
+                            </div>
+
+                            <!-- Botão -->
+                            <button class="btn btn-primary btn-lg w-100 mt-3">
+                                Entrar
+                            </button>
+
+                        </form>
+
+                        <div class="text-center mt-4">
+                            <a th:href="@{/usuarios/novo}">
+                                Criar usuário
+                            </a>
+                        </div>
+
+                    </div>
+
+                </div>
+
             </div>
-
-            <!-- Senha -->
-            <div class="mb-3">
-                <label for="password" class="form-label">Senha</label>
-                <input type="password"
-                       id="password"
-                       name="password"
-                       class="form-control"
-                       autocomplete="current-password"
-                       required>
-            </div>
-
-            <!-- erro de login -->
-            <div th:if="${param.error}" class="alert alert-danger">
-                Usuário ou senha inválidos
-            </div>
-
-            <!-- logout -->
-            <div th:if="${param.logout}" class="alert alert-success">
-                Logout realizado com sucesso
-            </div>
-
-            <button class="btn btn-primary w-100">
-                Entrar
-            </button>
-
-        </form>
-
-        <div class="text-center mt-3">
-            <a th:href="@{/usuarios/novo}">
-                Criar usuário
-            </a>
         </div>
 
     </div>

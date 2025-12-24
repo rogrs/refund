@@ -3,24 +3,54 @@
       xmlns:th="http://www.thymeleaf.org"
       th:replace="layout/base :: layout(~{::section})">
 
-<section class="row justify-content-center">
+<section class="min-vh-100 d-flex align-items-center">
 
-    <div class="col-md-6">
+    <div class="container">
 
-        <h3 class="mb-3 text-center">Meu Perfil</h3>
+        <div class="row justify-content-center">
+            <div class="col-12 col-sm-10 col-md-8 col-lg-6">
 
-        <div class="card shadow-sm">
-            <div class="card-body">
+                <div class="card shadow-sm">
 
-                <p><strong>E-mail:</strong> <span th:text="${usuario.email}"></span></p>
-                <p><strong>Usuário:</strong> <span th:text="${usuario.username}"></span></p>
-                <p><strong>Idioma:</strong> <span th:text="${usuario.langKey}"></span></p>
+                    <div class="card-body p-4">
 
-                <div class="d-grid gap-2 mt-3">
-                    <a class="btn btn-primary"
-                       th:href="@{/usuarios/editar}">
-                        Editar Perfil
-                    </a>
+                        <h3 class="mb-4 text-center">
+                            Meu Perfil
+                        </h3>
+
+                        <div class="row g-3">
+
+                            <div class="col-12">
+                                <div class="d-flex justify-content-between">
+                                    <strong>E-mail</strong>
+                                    <span th:text="${usuario.email}"></span>
+                                </div>
+                            </div>
+
+                            <div class="col-12">
+                                <div class="d-flex justify-content-between">
+                                    <strong>Usuário</strong>
+                                    <span th:text="${usuario.username}"></span>
+                                </div>
+                            </div>
+
+                            <div class="col-12">
+                                <div class="d-flex justify-content-between">
+                                    <strong>Idioma</strong>
+                                    <span th:text="${usuario.langKey}"></span>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="d-grid mt-4">
+                            <a class="btn btn-primary btn-lg"
+                               th:href="@{/usuarios/editar}">
+                                Editar Perfil
+                            </a>
+                        </div>
+
+                    </div>
                 </div>
 
             </div>
