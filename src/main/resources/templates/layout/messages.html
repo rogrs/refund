@@ -1,3 +1,8 @@
+<!DOCTYPE html>
+<html lang="pt-br"
+      xmlns:th="http://www.thymeleaf.org">
+<body>
+
 <div th:fragment="messages">
 
     <div th:if="${#fields.hasErrors('*')}"
@@ -6,10 +11,8 @@
 
         <div class="d-flex align-items-start gap-2">
 
-            <!-- Ícone -->
             <span class="fs-4">⚠️</span>
 
-            <!-- Lista de erros -->
             <div>
                 <strong class="d-block mb-1">
                     Corrija os erros abaixo:
@@ -24,7 +27,6 @@
 
         </div>
 
-        <!-- Botão fechar -->
         <button type="button"
                 class="btn-close"
                 data-bs-dismiss="alert"
@@ -34,3 +36,6 @@
     </div>
 
 </div>
+
+</body>
+</html>

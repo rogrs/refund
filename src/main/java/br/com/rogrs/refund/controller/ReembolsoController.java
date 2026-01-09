@@ -68,55 +68,6 @@ public class ReembolsoController {
         return "redirect:/reembolsos";
     }
 
-    @GetMapping("/novo-wizard")
-    public String novoWizard(Model model) {
-        model.addAttribute("reembolso", new Reembolso());
-        popularCombos(model);
-        return "reembolso/wizard";
-    }
-
-    @PostMapping("/wizard/passo1")
-    public String passo1(
-            @Valid @ModelAttribute("reembolso") Reembolso reembolso,
-            BindingResult result,
-            Model model
-    ) {
-        if (result.hasErrors()) {
-            popularCombos(model);
-            model.addAttribute("abaAtiva", "passo1");
-            return "reembolso/wizard";
-        }
-
-        reembolso.setDataPedido(LocalDate.now());
-        Reembolso salvo = service.salvar(reembolso);
-
-        model.addAttribute("reembolso", salvo);
-        model.addAttribute("abaAtiva", "passo2");
-        popularCombos(model);
-
-        return "reembolso/wizard";
-    }
-
-    @PostMapping("/wizard/passo2")
-    public String passo2(
-            @RequestParam Long id,
-            @RequestParam("notaFiscal") MultipartFile arquivo,
-            Model model
-    ) {
-        Reembolso r = service.buscarPorId(id);
-
-        if (!arquivo.isEmpty()) {
-            r.setArquivoNotaFiscal(service.salvarArquivoNotaFiscal(arquivo));
-            service.salvar(r);
-        }
-
-        model.addAttribute("reembolso", r);
-        model.addAttribute("abaAtiva", "passo3");
-        popularCombos(model);
-
-        return "reembolso/wizard";
-    }
-
 
     /* ==========================================================
        HELPERS
